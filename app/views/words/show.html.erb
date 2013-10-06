@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @word.name %>
+</p>
+
+<p>
+  <b>Definition:</b>
+  <%= @word.definition %>
+</p>
+
+<p>
+  <b>Learned:</b>
+  <%= @word.learned %>
+</p>
+
+<p>
+  <b>Part of speech:</b>
+  <%= @word.part_of_speech %>
+</p>
+
+<p>
+  <b>Phrases:</b>
+  <%= @word.phrases %>
+</p>
+
+<p>
+  <b>Hyphenation:</b>
+  <%= @word.hyphenation %>
+</p>
+
+<p>
+  <b>Synonyms:</b>
+  <%= @word.synonyms %>
+</p>
+
+<p>
+  <b>Date learned:</b>
+  <%= @word.date_learned %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @word.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_word_path(@word) %> |
+<%= link_to 'Back', words_path %>

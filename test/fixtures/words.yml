@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  definition: MyText
+  learned: false
+  part_of_speech: MyString
+  phrases: MyString
+  hyphenation: MyString
+  synonyms: MyString
+  date_learned: 2013-10-06 13:56:39
+  user_id: 1
+
+two:
+  name: MyString
+  definition: MyText
+  learned: false
+  part_of_speech: MyString
+  phrases: MyString
+  hyphenation: MyString
+  synonyms: MyString
+  date_learned: 2013-10-06 13:56:39
+  user_id: 1
