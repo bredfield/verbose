@@ -3,7 +3,7 @@ class WordsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @words = Word.all
+    @words = Word.where(user_id:current_user.id)
 
     respond_with @words
   end
@@ -11,7 +11,6 @@ class WordsController < ApplicationController
  
   def show
     @word = Word.find(params[:id])
-
     respond_with @word
   end
 
@@ -33,7 +32,8 @@ class WordsController < ApplicationController
  
   def create
     @word = Word.new(params[:word])
-
+    @word.user_id = current_user.id
+    
     respond_to do |format|
       if @word.save
         format.html { redirect_to @word, notice: 'Word was successfully created.' }
