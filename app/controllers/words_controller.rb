@@ -33,7 +33,7 @@ class WordsController < ApplicationController
   def create
     @word = Word.new(params[:word])
     @word.user_id = current_user.id
-    
+
     respond_to do |format|
       if @word.save
         format.html { redirect_to @word, notice: 'Word was successfully created.' }
@@ -43,7 +43,19 @@ class WordsController < ApplicationController
         format.json { render json: @word.errors, status: :unprocessable_entity }
       end
     end
+
   end
+
+  # def create
+  #   @word = Word.new(params[:word])
+  #   @word.user_id = current_user.id
+  #   YAML.dump @word
+
+  #   respond_with @word do |format|
+  #     format.html { @word.valid? ? redirect_to(@word) : render(:new) }
+  #     format.json { render :json => @word }
+  #   end
+  # end
 
  
   def update

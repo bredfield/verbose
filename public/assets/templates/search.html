@@ -1,0 +1,26 @@
+<div class="container content">
+<form ng-submit="searchWord(wordSearch)">
+	Find a word: 
+	<input focused type="text" ng-model="wordSearch"  size="30" placeholder="Find a word">
+	<input class="btn-primary btn" type="submit" value="search">
+</form>
+
+<div ng-show="hasSuggestions">
+	<h3>Did you mean:</h3>
+	<ul class="unstyled">
+		<li lined-item ng-repeat="suggestion in suggestions" ng-click="searchWord(suggestion)">
+			{{suggestion}} 
+		</li>
+	</ul>
+</div>
+
+<h3 ng-show="noWords">No words found.</h3>
+
+<ul class="unstyled">
+	<li lined-item ng-repeat="definition in definitions">
+		{{definition.text}} 
+		<div class="btn" ng-click="addWord(definition)">Remember</div>
+	</li>
+</ul>
+
+</div>

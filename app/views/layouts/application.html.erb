@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Verbose">
 <head>
   <title>Verbose</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if user_signed_in? %>
-    <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-  <% else %>
-    <li><%= link_to('Sign In', new_user_session_path)  %></li>
-  <% end %>
+
+<div id="app-container">
+ <div class="navbar">
+  <div class="navbar-inner navbar-inner-gray navbar-fixed-top">
+    <div class="container">
+    <ul class="nav">
+      <li><a href="#/" class="brand">Verbose</a></li>
+      <li active-link><a href="#/">Words</a></li>
+      <li active-link><a href="#/search">Search</a></li>
+      <% if user_signed_in? %>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+      <% else %>
+        <li><%= link_to('Sign In', new_user_session_path)  %></li>
+      <% end %>
+      <!-- <li active-link><a href="#/quiz">Quiz</a></li> -->
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="" ui-view>
+</div>
+</div>
+
+
+
 <%= yield %>
 
+<%= javascript_include_tag "application" %>
 </body>
 </html>
