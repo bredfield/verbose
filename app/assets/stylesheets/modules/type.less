@@ -137,6 +137,35 @@ ol {
   }
 }
 
+li.li-lined{
+  position:relative;
+  padding:13px 0 15px 0;
+  // padding:0 20px;
+  .border-bottom{
+    height:1px;
+    width:90%;
+    background:@gray-lighter;
+    position:absolute;
+    right:0;
+    bottom:0;
+  }
+  a.link-cell{
+    text-decoration:none;
+    display: block;
+    padding:0 20px;
+    color:@text-color;
+    
+    .title{
+      color:@red;
+      padding:0;
+      margin:0 0 3px 0;
+    }
+    p{
+      margin-bottom:0
+    }
+  }
+}
+
 // Description Lists
 dl {
   margin-bottom: @line-height-computed;

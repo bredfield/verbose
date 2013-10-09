@@ -177,9 +177,10 @@
 
 .navbar-brand {
   float: left;
-  padding: 24px @navbar-padding-horizontal;
+  padding: @navbar-padding-vertical @navbar-padding-horizontal;
   font-size: @font-size-large;
   line-height: @line-height-computed;
+  font-family:"Cardo";
   &:hover,
   &:focus {
     text-decoration: none;
@@ -382,7 +383,7 @@
   background-color: @navbar-default-bg;
   border-color: @navbar-default-border;
   border:0;
-  border-bottom:4px solid @brand-primary;
+  border-bottom:1px solid @gray-light;
   font-family:@headings-font-family;
   font-size:14px;
   text-transform: uppercase;

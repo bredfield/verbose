@@ -1,30 +1,29 @@
-<div class="btn-group btn-group-square learned-btn-group subheader subheader-tabs">
-    <button class="btn btn-none" ng-model="query.learned" btn-radio="false">Needs Learning</button>
-    <button class="btn btn-none" ng-model="query.learned" btn-radio="true">Learned</button>
+<div class="row">
+	<div class="btn btn-primary col-xs-6" ng-model="query.learned" btn-radio="false">Needs Learning</div>
+	<div class="btn btn-primary col-xs-6" ng-model="query.learned" btn-radio="true">Learned</div>
 </div>
 
-<div class="container second-content">
+<div class="container">
 	<form class="form-inline form-filters">
         <input type="text" ng-model="query.$" placeholder="Filter by anything" class="input-medium">
         <select ng-model="orderProp.$" class="input-small pull-right">
-			<option value="-dateAdded">Newest</option>
-			<option value="dateAdded">Oldest</option>
+			<option value="-created_at">Newest</option>
+			<option value="created_at">Oldest</option>
 			<option value="name">Alphabetical</option>
 		</select>
-    </form>
-	
+  </form>
 </div><!-- .container -->
-<div class="container container-no-padding">
-<ul class="unstyled">
+
+<div class="container">
+	<ul class="list-unstyled">
 		<li lined-item ng-hide="query.learned" class="text-center">
-			<a href="#/search" class="add-word btn btn-block-level">Add a word</a>
+			<a href="#/search" class="add-word btn btn-block-level btn-secondary">Add a word</a>
 		</li>
-		<li lined-item ng-repeat="word in words | orderBy:orderProp.$ | filter:query">
-			
+		<li lined-item ng-repeat="word in words | orderBy:orderProp.$ | filter:query">			
 				<swipe>
 					<div>
-						<a href="#/words/{{word.name}}" class="link-cell">
-							<h4 class="title">{{word.name | capitalize}} <small>( {{word.partOfSpeech}} )</small></h4>
+						<a href="#/words/{{word.id}}" class="link-cell">
+							<h4 class="title">{{word.name | capitalize}} <small>( {{word.part_of_speech}} )</small></h4>
 							<p>{{word.definition}}</p>
 						</a>
 					</div>
@@ -35,7 +34,6 @@
 						</div>
 					</div>
 				</swipe>
-			
 		</li>
 	</ul>
 </div>

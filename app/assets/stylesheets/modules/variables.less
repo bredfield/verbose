@@ -25,6 +25,7 @@
 @brand-danger:          #d9534f;
 @brand-info:            #5bc0de;
 
+@red:                  #9d261d;
 @cobalt:               #3d484b;
 @cobalt-light:         #5c6166;
 @cobalt-dark:          #202A2C;
@@ -46,7 +47,7 @@
 // -------------------------
 
 @font-family-sans-serif:  "Square", Helvetica, Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+@font-family-serif:       "Cardo", "Times New Roman", Times, serif;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
 
@@ -57,7 +58,7 @@
 @line-height-base:        1.428571429; // 20/14
 @line-height-computed:    floor(@font-size-base * @line-height-base); // ~20px
 
-@headings-font-family:    "Square Bold", Helvetica, Arial, sans-serif;
+@headings-font-family:    @font-family-serif;
 @headings-font-weight:    500;
 @headings-line-height:    1.1;
 
@@ -242,11 +243,11 @@
 // -------------------------
 
 // Basics of a navbar
-@navbar-height:                    80px;
+@navbar-height:                    40px;
 @navbar-margin-bottom:             @line-height-computed;
 @navbar-default-color:             #777;
-@navbar-default-bg:                @cobalt-dark;
-@navbar-default-border:            @brand-primary;
+@navbar-default-bg:                @white;
+@navbar-default-border:            @gray-light;
 @navbar-border-radius:             0;
 @navbar-padding-horizontal:        floor(@grid-gutter-width / 2);
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);

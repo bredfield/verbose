@@ -17,7 +17,7 @@
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   border-radius: 0;
   white-space: nowrap;
   .user-select(none);
@@ -36,7 +36,7 @@
   &.active {
     outline: 0;
     background-image: none;
-    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+    // .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
   }
 
   &.disabled,
@@ -61,6 +61,11 @@
   background:transparent;
   text-decoration:underline;
   color:@white;
+}
+.btn-secondary{
+  background:@gray-lighter;
+  color:@white;
+  border-radius:3px;
 }
 .btn-primary {
   .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);

@@ -1,13 +1,13 @@
 <div class="container content">
 <div ng-show="word">
-	<h2>{{word.name | capitalize}} <small>({{word.partOfSpeech}})</small></h2>
+	<h2>{{word.name | capitalize}} <small>({{word.part_of_speech}})</small></h2>
 	<p>{{word.definition}}</p>
 	<hr>
-	<ul class="unstyled">
+	<ul class="list-unstyled">
 		<li lined-items><strong>Hyphenation</strong>: <span ng-bind-html-unsafe="word.hyphenation"></span></li>
-		<li lined-items><strong>Synonyms</strong>: {{synonymString}}</li>
-		<li lined-items><strong>Phrases</strong>: {{phrasesString}}</li>
-		<li lined-items><strong>Date added</strong>: {{word.dateAdded | date:"M/dd/yy"}}</li>
+		<li lined-items><strong>Synonyms</strong>: {{word.synonyms}}</li>
+		<li lined-items><strong>Phrases</strong>: {{word.phrases}}</li>
+		<li lined-items><strong>Date added</strong>: {{word.created_at | date:"M/dd/yy"}}</li>
 		<li lined-items><strong>Date learned</strong>: {{dateLearned | date:"M/dd/yy"}}</li>
 	</ul>
 	<hr>

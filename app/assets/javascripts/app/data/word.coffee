@@ -1,5 +1,5 @@
 angular.module("Verbose").factory 'Word', ($resource, $rootScope)->
-  resource = $resource "/words/:id.json",
+  Word = $resource "/words/:id.json",
     id: "@id"
   ,
     index:
@@ -9,10 +9,15 @@ angular.module("Verbose").factory 'Word', ($resource, $rootScope)->
       method: "GET"
       isArray:true
       url:"/words/search.json"
-    save:
+    update:
       method: "PUT"
 
+  Word.toggleLearned = (word)->
+    word.learned = !word.learned
+    word.date_learned = if word.learned then new Date() else null
+    word.$update()
 
+  return Word
 # angular.module("Verbose").factory 'Word', ($rootScope)->
 # 	wordService = {}
 # 	words = []

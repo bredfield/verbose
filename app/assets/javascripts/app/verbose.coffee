@@ -16,10 +16,10 @@ Verbose = angular.module('Verbose',['ui.router.state','ui.bootstrap', 'ngResourc
         url:'/words/:wordId'
         templateUrl:"#{templateRoot}/wordDetail.html"
         controller:'detailCtrl'
-      # .state 'search',
-      #   url:'/search'
-      #   templateUrl:"#{templateRoot}/search.html"
-      #   controller:"searchCtrl"
+      .state 'search',
+        url:'/search'
+        templateUrl:"#{templateRoot}/search.html"
+        controller:"searchCtrl"
       .state 'quiz',
         url:'/quiz'
         templateUrl:"#{templateRoot}/quiz.html"

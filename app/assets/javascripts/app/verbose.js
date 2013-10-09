@@ -16,6 +16,10 @@
       url: '/words/:wordId',
       templateUrl: "" + templateRoot + "/wordDetail.html",
       controller: 'detailCtrl'
+    }).state('search', {
+      url: '/search',
+      templateUrl: "" + templateRoot + "/search.html",
+      controller: "searchCtrl"
     }).state('quiz', {
       url: '/quiz',
       templateUrl: "" + templateRoot + "/quiz.html",
@@ -96,8 +100,8 @@
 
 (function() {
   angular.module("Verbose").factory('Word', function($resource, $rootScope) {
-    var resource;
-    return resource = $resource("/words/:id.json", {
+    var Word;
+    Word = $resource("/words/:id.json", {
       id: "@id"
     }, {
       index: {
@@ -109,10 +113,16 @@
         isArray: true,
         url: "/words/search.json"
       },
-      save: {
+      update: {
         method: "PUT"
       }
     });
+    Word.toggleLearned = function(word) {
+      word.learned = !word.learned;
+      word.date_learned = word.learned ? new Date() : null;
+      return word.$update();
+    };
+    return Word;
   });
 
 }).call(this);
@@ -121,14 +131,14 @@
   angular.module("Verbose").controller('detailCtrl', function($scope, $state, Word) {
     var _ref,
       _this = this;
-    $scope.word = Word.getWord($state.params.wordId);
-    $scope.dateLearned = (_ref = $scope.word.dateLearned) != null ? _ref : "Not yet learned";
-    $scope.phrasesString = $scope.word.phrases.join(", ");
-    $scope.synonymString = $scope.word.synonyms.join(", ");
+    $scope.word = Word.get({
+      id: $state.params.wordId
+    });
+    $scope.dateLearned = (_ref = $scope.word.date_learned) != null ? _ref : "Not yet learned";
     $scope.$watch("word.learned", function(val) {
       var _ref1;
       $scope.learnedText = val ? "Whoops, forgot" : "Learned it!";
-      return $scope.dateLearned = (_ref1 = $scope.word.dateLearned) != null ? _ref1 : "Not yet learned";
+      return $scope.dateLearned = (_ref1 = $scope.word.date_learned) != null ? _ref1 : "Not yet learned";
     });
     $scope.remove = function(word) {
       return Word.remove(word);
@@ -240,20 +250,11 @@
 
   Verbose = angular.module("Verbose");
 
-  Verbose.factory("generateUid", function() {
-    return function(separator) {
-      var S4, delim;
-      delim = separator || "-";
-      S4 = function() {
-        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-      };
-      return S4() + S4() + delim + S4() + delim + S4() + delim + S4() + delim + S4() + S4() + S4();
-    };
-  });
-
   Verbose.filter("capitalize", function() {
     return function(text) {
-      return text.charAt(0).toUpperCase() + text.slice(1);
+      if (text != null) {
+        return text.charAt(0).toUpperCase() + text.slice(1);
+      }
     };
   });
 
@@ -264,7 +265,7 @@
     var _this = this;
     $scope.words = Word.index();
     $scope.orderProp = {
-      $: "-dateAdded"
+      $: "-created_at"
     };
     $scope.query = {
       learned: false
@@ -319,75 +320,26 @@
 }).call(this);
 
 (function() {
-  angular.module("Verbose").controller("searchCtrl", function($scope, $http, $state, $q, Word, Dictionary, generateUid) {
+  angular.module("Verbose").controller("searchCtrl", function($scope, $http, $state, Word) {
     $scope.searchWord = function(wordSearch) {
-      $scope.wordSearch = wordSearch;
-      return $scope.definitions = Dictionary(wordSearch, "definitions").query({}, function(data) {
-        if (data.length === 0) {
-          return Dictionary($scope.wordSearch, "search", "words").get({}, function(data) {
-            if (data.searchResults.length > 1) {
-              $scope.hasSuggestions = true;
-              $scope.noWords = false;
-            } else {
-              $scope.hasSuggestions = false;
-              $scope.noWords = true;
-              return;
-            }
-            return $scope.suggestions = data.searchResults.map(function(d, i) {
-              if (i !== 0) {
-                return d.word;
-              }
-            });
-          });
-        } else {
-          $scope.hasSuggestions = false;
-          return $scope.noWords = false;
-        }
+      return $scope.definitions = Word.search({
+        word: wordSearch
+      }, function(data) {
+        return $scope.noWords = data.length === 0 ? true : false;
       });
     };
     return $scope.addWord = function(definition) {
-      var etymologies, hyphenation, phrases, relatedWords;
-      etymologies = Dictionary(definition.word, "etymologies").query().$then();
-      phrases = Dictionary(definition.word, "phrases").query().$then();
-      hyphenation = Dictionary(definition.word, "hyphenation").query().$then();
-      relatedWords = Dictionary(definition.word, "relatedWords").query({
-        relationshipTypes: 'synonym'
-      }).$then();
-      return $q.all([etymologies, phrases, hyphenation, relatedWords]).then(function(data) {
-        var hyphen, newWord, synonyms, text, _i, _len, _ref;
-        etymologies = data[0].data;
-        phrases = data[1].data.map(function(phrase) {
-          return phrase.gram1 + " " + phrase.gram2;
-        });
-        hyphenation = "";
-        _ref = data[2].data;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          hyphen = _ref[_i];
-          text = hyphen.text;
-          if (hyphen.type === "stress") {
-            text = "<strong>" + text + "</strong>";
-          }
-          if (hyphen.seq !== 0) {
-            text = "-" + text;
-          }
-          hyphenation += text;
-        }
-        synonyms = data[3].data[0].words;
-        newWord = {
-          id: generateUid(),
+      var newWord;
+      newWord = new Word({
+        word: {
           name: definition.word,
           definition: definition.text,
-          learned: false,
-          partOfSpeech: definition.partOfSpeech,
-          phrases: phrases,
-          hyphenation: hyphenation,
-          synonyms: synonyms,
-          dateAdded: new Date(),
-          dateLearned: null
-        };
-        Word.add(newWord);
-        return $state.transitionTo('index');
+          part_of_speech: definition.partOfSpeech,
+          learned: false
+        }
       });
+      newWord.$save();
+      return $state.transitionTo('index');
     };
   });
 

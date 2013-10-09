@@ -1,6 +1,7 @@
 class WordsController < ApplicationController
   respond_to :json, :html
   before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token, :only => [:create, :update]
 
   def index
     @words = Word.where(user_id:current_user.id)

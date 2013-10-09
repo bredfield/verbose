@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Cardo:400,700,400italic);
 /*!
  * Bootstrap v3.0.0
  *
@@ -388,7 +389,7 @@ cite {
   font-family: "Square", Helvetica, Arial, sans-serif;
 }
 .text-heavy {
-  font-family: "Square Bold", Helvetica, Arial, sans-serif;
+  font-family: "Cardo", "Times New Roman", Times, serif;
 }
 h1,
 h2,
@@ -402,7 +403,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Square Bold", Helvetica, Arial, sans-serif;
+  font-family: "Cardo", "Times New Roman", Times, serif;
   font-weight: 500;
   line-height: 1.1;
 }
@@ -504,6 +505,32 @@ ol ol {
   display: inline-block;
   padding-left: 5px;
   padding-right: 5px;
+}
+li.li-lined {
+  position: relative;
+  padding: 13px 0 15px 0;
+}
+li.li-lined .border-bottom {
+  height: 1px;
+  width: 90%;
+  background: #c2c2c2;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+li.li-lined a.link-cell {
+  text-decoration: none;
+  display: block;
+  padding: 0 20px;
+  color: #333333;
+}
+li.li-lined a.link-cell .title {
+  color: #9d261d;
+  padding: 0;
+  margin: 0 0 3px 0;
+}
+li.li-lined a.link-cell p {
+  margin-bottom: 0;
 }
 dl {
   margin-bottom: 20px;
@@ -1827,7 +1854,7 @@ textarea.input-lg {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   border-radius: 0;
   white-space: nowrap;
   -webkit-user-select: none;
@@ -1850,8 +1877,6 @@ textarea.input-lg {
 .btn.active {
   outline: 0;
   background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 .btn.disabled,
 .btn[disabled],
@@ -1904,6 +1929,11 @@ fieldset[disabled] .btn-default.active {
   background: transparent;
   text-decoration: underline;
   color: #ffffff;
+}
+.btn-secondary {
+  background: #c2c2c2;
+  color: #ffffff;
+  border-radius: 3px;
 }
 .btn-primary {
   color: #ffffff;
@@ -3517,7 +3547,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   z-index: 1000;
-  min-height: 80px;
+  min-height: 40px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -3708,9 +3738,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand {
   float: left;
-  padding: 24px 15px;
+  padding: 10px 15px;
   font-size: 18px;
   line-height: 20px;
+  font-family: "Cardo";
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -3726,8 +3757,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
   float: right;
   margin-right: 15px;
   padding: 9px 10px;
-  margin-top: 23px;
-  margin-bottom: 23px;
+  margin-top: 3px;
+  margin-bottom: 3px;
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -3747,7 +3778,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-nav {
-  margin: 15px -15px;
+  margin: 5px -15px;
 }
 .navbar-nav > li > a {
   padding-top: 10px;
@@ -3785,8 +3816,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 @media (min-width: 992px) {
@@ -3805,8 +3836,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin-top: 23px;
-  margin-bottom: 23px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 @media (min-width: 768px) {
   .navbar-form .form-group {
@@ -3862,13 +3893,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
   right: 0;
 }
 .navbar-btn {
-  margin-top: 23px;
-  margin-bottom: 23px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 .navbar-text {
   float: left;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 @media (min-width: 992px) {
   .navbar-text {
@@ -3877,11 +3908,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #202a2c;
-  border-color: #cb4f1c;
+  background-color: #ffffff;
+  border-color: #999999;
   border: 0;
-  border-bottom: 4px solid #cb4f1c;
-  font-family: "Square Bold", Helvetica, Arial, sans-serif;
+  border-bottom: 1px solid #999999;
+  font-family: "Cardo", "Times New Roman", Times, serif;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -3909,7 +3940,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #ffffff;
-  background-color: #121819;
+  background-color: #eeeeee;
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
@@ -3929,7 +3960,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #111617;
+  border-color: #ededed;
 }
 .navbar-default .navbar-nav > .dropdown > a:hover .caret,
 .navbar-default .navbar-nav > .dropdown > a:focus .caret {
@@ -3939,7 +3970,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #121819;
+  background-color: #eeeeee;
   color: #ffffff;
 }
 .navbar-default .navbar-nav > .open > a .caret,
@@ -3965,7 +3996,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #ffffff;
-    background-color: #121819;
+    background-color: #eeeeee;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
@@ -6009,4 +6040,52 @@ td.visible-print {
   .section-first {
     margin-top: 0;
   }
+}
+html,
+a {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  padding-top: 41px;
+}
+.subheader {
+  height: 40px;
+  position: fixed;
+  top: 41px;
+  border-bottom: 1px solid #c2c2c2;
+  margin-bottom: 20px;
+  z-index: 1030;
+}
+.subheader.subheader-tabs .btn {
+  padding: 14px 12px;
+}
+.subheader.subheader-tabs .btn.active {
+  background: #c2c2c2;
+  text-decoration: none;
+}
+.padding-wrapper {
+  padding: 0 20px;
+}
+.list-options {
+  background: #c2c2c2;
+}
+.form-filters {
+  margin-bottom: 0px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #c2c2c2;
+}
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float: left;
+  width: 100%;
+  position: relative;
 }

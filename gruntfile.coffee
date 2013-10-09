@@ -13,6 +13,7 @@ module.exports = (grunt) ->
           '<%= assetsRoot %>/javascripts/libs/angular-ui-router.js',
           '<%= assetsRoot %>/javascripts/libs/angular-resource.js',
           '<%= assetsRoot %>/javascripts/libs/ui-bootstrap-tpls-0.4.0.js',
+          '<%= assetsRoot %>/javascripts/libs/bootstrap.js',
           '<%= assetsRoot %>/javascripts/libs/swipe.js',
           '<%= assetsRoot %>/javascripts/libs/store.js',
           "<%= assetsRoot %>/javascripts/app/<%= pkg.name %>.js"
