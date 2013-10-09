@@ -1,0 +1,66 @@
+@import url(http://fonts.googleapis.com/css?family=Cardo:400,700,400italic);
+@import "modules/bootstrap.less";
+@import "modules/sections.less";
+
+html, a{
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0); 
+}
+
+body{
+  padding-top:41px;
+}
+
+.subheader {
+  height: @navbar-height;
+  position: fixed;
+  top: @navbar-height + 1;
+  border-bottom: 1px solid @gray-lighter;
+  margin-bottom:20px;
+  z-index: @zindex-navbar-fixed;
+  
+  &.subheader-tabs {
+    .btn {
+      padding: 14px 12px;
+      
+      &.active {
+        background: @gray-lighter;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.padding-wrapper{
+  padding:0 20px;
+}
+
+.list-options{
+  background:@gray-lighter;
+}
+
+.form-filters{
+  margin-bottom:0px;
+  padding-bottom:15px;
+  border-bottom:1px solid @gray-lighter  
+}
+
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+  // margin:0 -20px;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+  // padding:0 20px;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+  
+
+}
