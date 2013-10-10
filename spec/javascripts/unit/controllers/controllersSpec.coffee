@@ -1,4 +1,5 @@
 describe 'VERBOSE CONTROLLERS', ()->
+  console.log "=========Starting Ctrl Specs============"
   #SETUP
   beforeEach ()->
     module('Verbose')
@@ -52,14 +53,12 @@ describe 'VERBOSE CONTROLLERS', ()->
     beforeEach inject (_$httpBackend_, $state, $rootScope, $controller)->
       ##Set up necessary mocks
       $httpBackend = _$httpBackend_
-      $httpBackend.expectGET('words/num').respond
+      $httpBackend.expectGET('/words/:id.json').respond
         created_at: "2013-10-09T01:33:38Z"
         name: "detailWord"
         date_learned:null
-
-      $httpBackend.expectGET('words.json').respond({})
       
-      $state.params.wordID = "num"
+      $state.params.wordId = ":id"
 
       scope = $rootScope.$new()
       ctrl = $controller('detailCtrl', {$scope:scope})
@@ -77,6 +76,44 @@ describe 'VERBOSE CONTROLLERS', ()->
 
     it 'Should toggle learned text', ()->
       ##switch query learned, apply watch
-      scope.query.learned = false
+      scope.word.learned = true
       scope.$apply()
-      expect(scope.learnedText).toBe("Learned it!")
+      expect(scope.learnedText).toBe("Whoops, forgot")
+      expect(scope.dateLearned).toBe("Not yet learned")
+
+  #WORD SEARCH CONTROLLER
+  describe "SEARCH",()->
+    scope = ""
+    ctrl = ""
+    $httpBackend = ""
+
+    beforeEach inject (_$httpBackend_, $state, $rootScope, $controller)->
+      ##Set up necessary mocks
+      $httpBackend = _$httpBackend_
+      $httpBackend.expectGET('/words/search.json?word=Test').respond(
+        [
+          name: "Test"
+          definition: "Lol i dunno"
+          part_of_speech:"noun"
+        ]
+      )
+        
+
+      scope = $rootScope.$new()
+      ctrl = $controller('searchCtrl', {$scope:scope})
+
+    it 'Should load the search', ()->
+      expect(scope.definitions).toBeUndefined()
+      scope.searchWord("Test")
+      ##pull 
+      $httpBackend.flush()
+      expect(scope.definitions[0].name).toBe("Test")
+
+    it 'Should properly assign no words', ()->
+      expect(scope.definitions).toBeUndefined()
+      scope.searchWord("Test")
+      ##pull 
+      $httpBackend.flush()
+      expect(scope.noWords).toBe(false)
+
+
