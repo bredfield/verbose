@@ -1,6 +1,6 @@
 angular.module("Verbose").controller 'detailCtrl', ($scope, $state, Word)->
 	
-	$scope.word = Word.get(id:$state.params.wordId)
+	console.log $scope.word = Word.get(id:$state.params.wordId)
 	$scope.dateLearned = $scope.word.date_learned ? "Not yet learned"
 
 	$scope.$watch "word.learned", (val)=>

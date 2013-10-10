@@ -12,8 +12,6 @@
 
 Verbose = angular.module('Verbose',['ui.router.state','ui.bootstrap', 'ngResource'])
   .config ($routeProvider, $httpProvider, $stateProvider, $urlRouterProvider)->
-    if !store.get('words')
-      store.set('words',[])
 
     templateRoot = "assets/templates"
 
