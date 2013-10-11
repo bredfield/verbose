@@ -105,14 +105,14 @@ describe 'VERBOSE CONTROLLERS', ()->
     it 'Should load the search', ()->
       expect(scope.definitions).toBeUndefined()
       scope.searchWord("Test")
-      ##pull 
+
       $httpBackend.flush()
       expect(scope.definitions[0].name).toBe("Test")
 
     it 'Should properly assign no words', ()->
       expect(scope.definitions).toBeUndefined()
       scope.searchWord("Test")
-      ##pull 
+
       $httpBackend.flush()
       expect(scope.noWords).toBe(false)
 

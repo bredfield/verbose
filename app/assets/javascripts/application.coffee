@@ -30,10 +30,6 @@ Verbose = angular.module('Verbose',['ui.router.state','ui.bootstrap', 'ngResourc
         url:'/search'
         templateUrl:"#{templateRoot}/search.html"
         controller:"searchCtrl"
-      .state 'quiz',
-        url:'/quiz'
-        templateUrl:"#{templateRoot}/quiz.html"
-        controller:"quizCtrl"
 
     # $httpProvider.defaults.headers.common.useXDomain = true
-    delete $httpProvider.defaults.headers.common['X-Requested-With']
+    # delete $httpProvider.defaults.headers.common['X-Requested-With']

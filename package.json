@@ -4,11 +4,7 @@
   "author": "Rounded LLC <http://roundedco.com>",
   "version": "0.0.1",
   "dependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-watch": "~0.4.3",
-    "grunt-contrib-coffee": "~0.7.0",
     "karma": "~0.10.1",
-    "grunt-karma": "~0.6.1", 
     "karma-chrome-launcher": "~0.1.0",
     "karma-jasmine": "~0.1.0"
   }

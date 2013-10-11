@@ -1,7 +1,9 @@
 angular.module("Verbose").controller "searchCtrl", ($scope, $http, $state, Word)->
 	
 	$scope.searchWord = (wordSearch)->
+		##pull definitions
 		$scope.definitions = Word.search {word:wordSearch}, (data)->
+			  ##if no words, display text
 				$scope.noWords = if data.length == 0 then true else false
 
 	$scope.addWord = (definition)->
@@ -13,6 +15,3 @@ angular.module("Verbose").controller "searchCtrl", ($scope, $http, $state, Word)
 				learned:false
 		newWord.$save()
 		$state.transitionTo('index')
-
-		
-
