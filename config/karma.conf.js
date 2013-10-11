@@ -15,8 +15,8 @@ module.exports = function (config) {
       'app/assets/javascripts/app/**/*.coffee',
 
       // and our tests
-      'spec/javascripts/libs/angular-mocks.js',
-      'spec/javascripts/unit/**/*.coffee'
+      'test/javascripts/libs/angular-mocks.js',
+      'test/javascripts/unit/**/*.coffee'
     ],
 
     frameworks: ['jasmine'],

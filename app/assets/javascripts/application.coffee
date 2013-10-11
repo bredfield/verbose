@@ -11,7 +11,7 @@
 ##= require_tree ./app
 
 Verbose = angular.module('Verbose',['ui.router.state','ui.bootstrap', 'ngResource'])
-  .config ($routeProvider, $httpProvider, $stateProvider, $urlRouterProvider)->
+  .config ($stateProvider, $urlRouterProvider)->
 
     templateRoot = "assets/templates"
 
@@ -31,5 +31,3 @@ Verbose = angular.module('Verbose',['ui.router.state','ui.bootstrap', 'ngResourc
         templateUrl:"#{templateRoot}/search.html"
         controller:"searchCtrl"
 
-    # $httpProvider.defaults.headers.common.useXDomain = true
-    # delete $httpProvider.defaults.headers.common['X-Requested-With']

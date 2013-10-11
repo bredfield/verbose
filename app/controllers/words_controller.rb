@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
   respond_to :json, :html
   before_filter :authenticate_user!
-  skip_before_filter :verify_authenticity_token, :only => [:create, :update]
+  skip_before_filter :verify_authenticity_token, :only => [:create, :update, :destroy]
 
   def index
     @words = Word.where(user_id:current_user.id)
@@ -46,18 +46,6 @@ class WordsController < ApplicationController
     end
 
   end
-
-  # def create
-  #   @word = Word.new(params[:word])
-  #   @word.user_id = current_user.id
-  #   YAML.dump @word
-
-  #   respond_with @word do |format|
-  #     format.html { @word.valid? ? redirect_to(@word) : render(:new) }
-  #     format.json { render :json => @word }
-  #   end
-  # end
-
  
   def update
     @word = Word.find(params[:id])

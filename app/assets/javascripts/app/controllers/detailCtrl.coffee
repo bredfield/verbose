@@ -10,7 +10,9 @@ angular.module("Verbose").controller 'detailCtrl', ($scope, $state, Word)->
 		$scope.dateLearned = $scope.word.date_learned ? "Not yet learned"
 	
 	$scope.remove = (word)->
-		Word.remove(word)
+		##Delete word & switch to index view
+		Word.remove {id:word.id}, ()->
+			$state.transitionTo('index')
 
 	$scope.toggleLearned = (word)->
 		Word.toggleLearned(word)

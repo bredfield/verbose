@@ -14,14 +14,17 @@ describe 'VERBOSE CONTROLLERS', ()->
     ctrl = ""
     $httpBackend = ""
 
-    beforeEach inject (_$httpBackend_, $rootScope, $controller)->
+    beforeEach inject (_$httpBackend_, $rootScope, $controller, Word)->
       ##Set up necessary mocks
       $httpBackend = _$httpBackend_
       $httpBackend.expectGET('/words.json').respond([
-        {created_at: "2013-10-09T01:33:38Z",
-        name: "earlierWord"},
-        {created_at: "2013-10-09T01:33:55Z",
-        name: "laterWord"}
+        id:0
+        created_at: "2013-10-09T01:33:38Z"
+        name: "earlierWord"
+      ,
+        id:1
+        created_at: "2013-10-09T01:33:55Z"
+        name: "laterWord"
       ])
       scope = $rootScope.$new()
       ctrl = $controller('listCtrl', {$scope:scope})
@@ -43,6 +46,17 @@ describe 'VERBOSE CONTROLLERS', ()->
       scope.query.learned = false
       scope.$apply()
       expect(scope.learnedText).toBe("Learned it!")
+
+    it 'Should remove words', inject (Word)->
+      data = "word successfully destroyed"
+      $httpBackend.expectDELETE('/words/1.json').respond(data)
+
+      deleted = Word.remove {id:1}, ()->
+        scope.words.splice(1,1)
+
+      $httpBackend.flush()
+
+      expect(scope.words.length).toBe(1)
 
   #WORD DETAIL CONTROLLER
   describe "DETAIL",()->
@@ -97,7 +111,6 @@ describe 'VERBOSE CONTROLLERS', ()->
           part_of_speech:"noun"
         ]
       )
-        
 
       scope = $rootScope.$new()
       ctrl = $controller('searchCtrl', {$scope:scope})

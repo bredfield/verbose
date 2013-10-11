@@ -1,4 +1,4 @@
-angular.module("Verbose").controller 'listCtrl', ($scope, Word, Suggestion)->
+angular.module("Verbose").controller 'listCtrl', ($scope, Word)->
 	##pull word data from backend
 	$scope.words = Word.index()
 
@@ -14,7 +14,12 @@ angular.module("Verbose").controller 'listCtrl', ($scope, Word, Suggestion)->
 		$scope.learnedText = if $scope.query.learned then "Whoops, forgot" else "Learned it!"
 
 	$scope.remove = (word)->
-		Word.remove(word)
+		##pos of word in scope
+		index = $scope.words.indexOf(word)
+
+		console.log Word.remove {id:word.id},()->
+			##if delete is succesful, remove from UI
+			$scope.words.splice(index,1)
 
 	$scope.toggleLearned = (word)->
 		Word.toggleLearned(word)
