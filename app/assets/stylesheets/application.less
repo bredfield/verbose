@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Cardo:400,700,400italic);
-@import "modules/bootstrap.less";
-@import "modules/sections.less";
+@import "modules/bootstrap";
+@import "modules/sections";
 
 html, a{
   -webkit-touch-callout: none;
@@ -11,11 +11,15 @@ body{
   padding-top:41px;
 }
 
+.content{
+  padding-top:15px;
+}
+
 .subheader {
   height: @navbar-height;
   position: fixed;
   top: @navbar-height + 1;
-  border-bottom: 1px solid @gray-lighter;
+  border-bottom: 1px solid @gray-dark;
   margin-bottom:20px;
   z-index: @zindex-navbar-fixed;
   
@@ -45,6 +49,9 @@ body{
   border-bottom:1px solid @gray-lighter  
 }
 
+.section{
+  margin-bottom:20px;
+}
 
 .swipe {
   overflow: hidden;
@@ -61,6 +68,4 @@ body{
   float:left;
   width:100%;
   position: relative;
-  
-
 }

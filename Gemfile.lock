@@ -61,6 +61,9 @@ GEM
     json (1.8.0)
     less (2.4.0)
       commonjs (~> 0.2.7)
+    less-rails (2.4.2)
+      actionpack (>= 3.1)
+      less (~> 2.4.0)
     libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -135,7 +138,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
-  less
+  less-rails
   mysql2
   rails (= 3.2.13)
   therubyracer

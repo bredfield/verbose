@@ -12,11 +12,13 @@
 
 Verbose = angular.module('Verbose',['ui.router.state','ui.bootstrap', 'ngResource'])
   .config ($stateProvider, $urlRouterProvider)->
-
+    
     templateRoot = "assets/templates"
 
+    ##default route
     $urlRouterProvider.otherwise("/")
 
+    ##set up routes
     $stateProvider
       .state 'index',
         url:'/'
